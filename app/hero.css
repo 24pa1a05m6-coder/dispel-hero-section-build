@@ -75,10 +75,10 @@
   font-size: clamp(10rem, 42vw, 36rem);
   font-weight: 400;
   letter-spacing: -0.085em;
-  line-height: 0.7;
+  line-height: 0.62;
   margin: 0;
   max-width: 85vw;
-  transform: translateY(-1vh);
+  transform: translateY(-2vh);
 }
 
 .interactive-word {
@@ -91,6 +91,12 @@
 .interactive-letter {
   display: inline-block;
   position: relative;
+}
+
+.interactive-letter:first-child,
+.interactive-letter:last-child {
+  transform: scaleY(0.88);
+  transform-origin: center;
 }
 
 .hero-caption {
