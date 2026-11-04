@@ -72,22 +72,20 @@
 }
 
 .hero-center h1 {
-  font-size: clamp(8rem, 17vw, 18rem);
+  font-size: clamp(10rem, 42vw, 36rem);
   font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 0.78;
+  letter-spacing: -0.085em;
+  line-height: 0.7;
   margin: 0;
+  max-width: 85vw;
   transform: translateY(-1vh);
-  width: min(88vw, 1420px);
 }
 
 .interactive-word {
-  display: flex;
+  display: inline-flex;
   font-family: 'Ballet', 'Brush Script MT', cursive;
   font-weight: 400;
-  justify-content: space-between;
   white-space: nowrap;
-  width: 100%;
 }
 
 .interactive-letter {
@@ -156,10 +154,10 @@
   }
 
   .hero-center h1 {
-    font-size: clamp(4.5rem, 21vw, 8.5rem);
-    letter-spacing: -0.035em;
-    line-height: 0.8;
-    width: 80vw;
+    font-size: clamp(5.5rem, 24vw, 10rem);
+    letter-spacing: -0.07em;
+    line-height: 0.72;
+    max-width: 88vw;
   }
 }
 
