@@ -83,28 +83,37 @@
 }
 
 .interactive-word {
-  display: inline-flex;
-  white-space: nowrap;
-}
-
-.interactive-letter,
-.interactive-segment {
-  display: inline-block;
-  position: relative;
-  transition: opacity 220ms ease, transform 220ms ease;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  width: min(85vw, 1100px);
 }
 
 .interactive-letter {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: inherit;
   cursor: default;
-  padding: 0 0.02em;
+  display: inline-flex;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  position: relative;
+  transition: color 220ms ease;
 }
 
-.interactive-letter:hover {
-  transform: translateY(-0.04em);
+.interactive-glyph {
+  display: inline-block;
 }
 
-.interactive-segment {
-  opacity: 0.92;
+.interactive-letter:hover,
+.interactive-letter:focus-visible {
+  color: var(--muted);
+  outline: none;
+}
+
+.interactive-letter--anchor {
+  color: var(--charcoal);
 }
 
 .hero-caption {
@@ -178,7 +187,7 @@
 @media (prefers-reduced-motion: reduce) {
   .site-nav a,
   .interactive-letter,
-  .interactive-segment {
+  .interactive-glyph {
     transition: none;
   }
 }
