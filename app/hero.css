@@ -116,6 +116,23 @@
   color: var(--charcoal);
 }
 
+.interactive-description {
+  bottom: 34px;
+  color: var(--muted);
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 10px;
+  left: 50%;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin: 0;
+  max-width: min(80vw, 560px);
+  position: fixed;
+  text-align: center;
+  text-transform: none;
+  transform: translateX(-50%);
+  width: max-content;
+}
+
 .hero-caption {
   bottom: 31px;
   left: 4vw;
@@ -168,6 +185,12 @@
   .hero-caption {
     bottom: 32px;
     left: 7vw;
+  }
+
+  .interactive-description {
+    bottom: 34px;
+    font-size: 8px;
+    max-width: 82vw;
   }
 
   .hero::after {
