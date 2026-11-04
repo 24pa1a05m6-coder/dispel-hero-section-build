@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
 const replacementByIndex = ['design', 'pixels', 'assets', 'coupon', 'market', 'funnel']
@@ -26,7 +26,6 @@ type InteractiveWordProps = {
 export function InteractiveWord({ word = 'dispel', className = '' }: InteractiveWordProps) {
   const letters = Array.from(word)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const prefersReducedMotion = useReducedMotion()
   const replacement = activeIndex === null ? word : replacementByIndex[activeIndex]
   const prefix = activeIndex === null ? '' : replacement.slice(0, activeIndex)
   const anchor = activeIndex === null ? '' : replacement[activeIndex]
@@ -36,7 +35,7 @@ export function InteractiveWord({ word = 'dispel', className = '' }: Interactive
   return (
     <>
       <span
-        className={`interactive-word${activeIndex !== null ? ' interactive-word--active' : ''} ${className}`}
+        className={`interactive-word ${className}`}
         aria-label={activeIndex === null ? word : replacement}
         onMouseLeave={() => setActiveIndex(null)}
       >
@@ -47,7 +46,7 @@ export function InteractiveWord({ word = 'dispel', className = '' }: Interactive
             className={`interactive-letter${isAnchor ? ' interactive-letter--anchor' : ''}`}
             data-letter={character}
             data-index={index}
-            key={`slot-${index}`}
+            key={`${activeIndex ?? 'base'}-${index}`}
             onClick={() => setActiveIndex(index)}
             onMouseEnter={() => setActiveIndex(index)}
             role="button"
@@ -59,15 +58,20 @@ export function InteractiveWord({ word = 'dispel', className = '' }: Interactive
                 setActiveIndex((current) => (current === index ? null : index))
               }
             }}
+            layout="position"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={transitions}
           >
-            <AnimatePresence initial={false} mode="sync">
+            <AnimatePresence initial={false} mode="popLayout">
               <motion.span
                 key={`${activeIndex ?? 'base'}-${character}`}
                 className="interactive-glyph"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={prefersReducedMotion ? { duration: 0 } : { ...transitions, delay: index * 0.025 }}
+                transition={transitions}
               >
                 {character}
               </motion.span>
@@ -84,7 +88,7 @@ export function InteractiveWord({ word = 'dispel', className = '' }: Interactive
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
           >
             {descriptions[activeIndex]}
           </motion.p>
