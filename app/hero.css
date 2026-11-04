@@ -56,18 +56,6 @@
   opacity: 1;
 }
 
-.site-brand {
-  color: var(--charcoal);
-  font-family: 'DM Mono', ui-monospace, monospace;
-  font-size: 10px;
-  left: 4vw;
-  letter-spacing: 0.06em;
-  position: absolute;
-  text-transform: lowercase;
-  top: 30px;
-  z-index: 2;
-}
-
 .hero-center {
   align-items: center;
   display: flex;

@@ -46,7 +46,7 @@ export function InteractiveWord({ word = 'dispel', className = '' }: Interactive
             className={`interactive-letter${isAnchor ? ' interactive-letter--anchor' : ''}`}
             data-letter={character}
             data-index={index}
-            key={`${activeIndex ?? 'base'}-${index}`}
+            key={`slot-${index}`}
             onClick={() => setActiveIndex(index)}
             onMouseEnter={() => setActiveIndex(index)}
             role="button"
@@ -58,20 +58,15 @@ export function InteractiveWord({ word = 'dispel', className = '' }: Interactive
                 setActiveIndex((current) => (current === index ? null : index))
               }
             }}
-            layout="position"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={transitions}
           >
-            <AnimatePresence initial={false} mode="popLayout">
+            <AnimatePresence initial={false} mode="sync">
               <motion.span
                 key={`${activeIndex ?? 'base'}-${character}`}
                 className="interactive-glyph"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={transitions}
+                transition={{ ...transitions, delay: index * 0.025 }}
               >
                 {character}
               </motion.span>
