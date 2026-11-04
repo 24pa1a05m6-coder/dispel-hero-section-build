@@ -56,10 +56,16 @@
   opacity: 1;
 }
 
-.hero-tagline {
+.site-brand {
+  color: var(--charcoal);
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 10px;
   left: 4vw;
+  letter-spacing: 0.06em;
   position: absolute;
-  top: 33px;
+  text-transform: lowercase;
+  top: 30px;
+  z-index: 2;
 }
 
 .hero-center {
@@ -79,7 +85,6 @@
   line-height: 0.9;
   margin: 0;
   max-width: 85vw;
-  transform: translateY(-1vh);
 }
 
 .interactive-word {
@@ -117,20 +122,20 @@
 }
 
 .interactive-description {
-  bottom: 34px;
+  bottom: 42px;
   color: var(--muted);
   font-family: 'DM Mono', ui-monospace, monospace;
-  font-size: 10px;
-  left: 50%;
+  font-size: 12px;
+  left: 0;
   letter-spacing: 0.04em;
   line-height: 1.5;
-  margin: 0;
+  margin: 0 auto;
   max-width: min(80vw, 560px);
   position: fixed;
+  right: 0;
   text-align: center;
   text-transform: none;
-  transform: translateX(-50%);
-  width: max-content;
+  width: calc(100% - 2rem);
 }
 
 .hero-caption {
@@ -188,8 +193,8 @@
   }
 
   .interactive-description {
-    bottom: 34px;
-    font-size: 8px;
+    bottom: 38px;
+    font-size: 10px;
     max-width: 82vw;
   }
 
