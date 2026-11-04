@@ -8,9 +8,7 @@
 }
 
 .hero {
-  background-color: #c8a37a;
-  background-image: radial-gradient(rgba(54, 37, 22, 0.2) 0.9px, transparent 0.9px);
-  background-size: 7px 7px;
+  background: var(--ivory);
   color: var(--charcoal);
   min-height: 100svh;
   overflow: hidden;
@@ -58,30 +56,16 @@
   opacity: 1;
 }
 
-.site-cta {
-  align-items: center;
-  border: 1px solid rgba(23, 23, 21, 0.55);
-  border-radius: 999px;
+.site-brand {
   color: var(--charcoal);
-  display: inline-flex;
   font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 10px;
-  justify-content: center;
-  letter-spacing: 0.05em;
-  padding: 11px 18px 10px;
+  left: 4vw;
+  letter-spacing: 0.06em;
   position: absolute;
-  right: 4vw;
-  text-decoration: none;
-  text-transform: uppercase;
-  top: 24px;
-  transition: background-color 180ms ease, color 180ms ease;
+  text-transform: lowercase;
+  top: 30px;
   z-index: 2;
-}
-
-.site-cta:hover,
-.site-cta:focus-visible {
-  background: var(--charcoal);
-  color: #c8a37a;
 }
 
 .hero-center {
@@ -172,13 +156,6 @@
 }
 
 @media (max-width: 640px) {
-  .site-cta {
-    font-size: 8px;
-    padding: 9px 13px 8px;
-    right: 7vw;
-    top: 20px;
-  }
-
   .site-nav {
     top: 27px;
   }

@@ -3,7 +3,7 @@ import { InteractiveWord } from './InteractiveWord'
 export function Hero() {
   return (
     <main className="hero">
-      <a className="site-cta" href="#get-started">Get started</a>
+      <div className="site-brand" aria-label="Dispel Solutions">dispel.solutions</div>
       <section className="hero-center" aria-labelledby="hero-title">
         <h1 id="hero-title">
           <InteractiveWord />
