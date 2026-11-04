@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ballet&family=DM+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Manrope:wght@500;600;700&display=swap');
 
 :root {
   --ivory: #f2f0ea;
@@ -72,31 +72,39 @@
 }
 
 .hero-center h1 {
-  font-size: clamp(10rem, 42vw, 36rem);
-  font-weight: 400;
-  letter-spacing: -0.085em;
-  line-height: 0.62;
+  font-family: 'Manrope', Arial, sans-serif;
+  font-size: clamp(5rem, 14vw, 14rem);
+  font-weight: 600;
+  letter-spacing: -0.1em;
+  line-height: 0.9;
   margin: 0;
   max-width: 85vw;
-  transform: translateY(-2vh);
+  transform: translateY(-1vh);
 }
 
 .interactive-word {
   display: inline-flex;
-  font-family: 'Ballet', 'Brush Script MT', cursive;
-  font-weight: 400;
   white-space: nowrap;
 }
 
-.interactive-letter {
+.interactive-letter,
+.interactive-segment {
   display: inline-block;
   position: relative;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
-.interactive-letter:first-child,
-.interactive-letter:last-child {
-  transform: scaleY(0.88);
-  transform-origin: center;
+.interactive-letter {
+  cursor: default;
+  padding: 0 0.02em;
+}
+
+.interactive-letter:hover {
+  transform: translateY(-0.04em);
+}
+
+.interactive-segment {
+  opacity: 0.92;
 }
 
 .hero-caption {
@@ -160,15 +168,17 @@
   }
 
   .hero-center h1 {
-    font-size: clamp(5.5rem, 24vw, 10rem);
-    letter-spacing: -0.07em;
-    line-height: 0.72;
+    font-size: clamp(4rem, 17vw, 7rem);
+    letter-spacing: -0.1em;
+    line-height: 0.9;
     max-width: 88vw;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-nav a {
+  .site-nav a,
+  .interactive-letter,
+  .interactive-segment {
     transition: none;
   }
 }
