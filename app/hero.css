@@ -8,9 +8,11 @@
 }
 
 .hero {
-  background-color: #c8a37a;
-  background-image: radial-gradient(rgba(54, 37, 22, 0.2) 0.9px, transparent 0.9px);
-  background-size: 7px 7px;
+  background-color: #dbbf99;
+  background-image:
+    radial-gradient(rgba(54, 37, 22, 0.16) 0.9px, transparent 0.9px),
+    linear-gradient(135deg, #dbbf99 0%, #e5c9a5 48%, #d1b189 100%);
+  background-size: 7px 7px, 100% 100%;
   color: var(--charcoal);
   min-height: 100svh;
   overflow: hidden;
@@ -74,14 +76,15 @@
   text-decoration: none;
   text-transform: uppercase;
   top: 24px;
-  transition: background-color 180ms ease, color 180ms ease;
+  transition: background 260ms ease, color 180ms ease, border-color 180ms ease;
   z-index: 2;
 }
 
 .site-cta:hover,
 .site-cta:focus-visible {
-  background: var(--charcoal);
-  color: #c8a37a;
+  background: linear-gradient(135deg, #dbbf99 0%, #e5c9a5 48%, #d1b189 100%);
+  border-color: var(--charcoal);
+  color: var(--charcoal);
 }
 
 .hero-center {
