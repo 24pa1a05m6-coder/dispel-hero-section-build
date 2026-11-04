@@ -79,7 +79,6 @@
   line-height: 0.9;
   margin: 0;
   max-width: 85vw;
-  transform: translateY(-1vh);
 }
 
 .interactive-word {
@@ -106,6 +105,14 @@
   display: inline-block;
 }
 
+.interactive-word--active .interactive-letter {
+  color: var(--muted);
+}
+
+.interactive-word--active .interactive-letter--anchor {
+  color: var(--charcoal);
+}
+
 .interactive-letter:hover,
 .interactive-letter:focus-visible {
   color: var(--muted);
@@ -117,20 +124,20 @@
 }
 
 .interactive-description {
-  bottom: 34px;
+  bottom: 54px;
   color: var(--muted);
   font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 10px;
-  left: 50%;
+  left: 0;
   letter-spacing: 0.04em;
   line-height: 1.5;
-  margin: 0;
+  margin: 0 auto;
   max-width: min(80vw, 560px);
-  position: fixed;
+  position: absolute;
+  right: 0;
   text-align: center;
   text-transform: none;
-  transform: translateX(-50%);
-  width: max-content;
+  width: calc(100% - 2rem);
 }
 
 .hero-caption {
@@ -188,7 +195,7 @@
   }
 
   .interactive-description {
-    bottom: 34px;
+    bottom: 52px;
     font-size: 8px;
     max-width: 82vw;
   }
