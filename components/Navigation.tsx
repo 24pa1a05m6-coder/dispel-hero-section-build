@@ -6,11 +6,8 @@ import { useEffect, useState } from 'react'
 const services = [
   ['Web Development', '/web-development'],
   ['App Development', '/app-development'],
-  ['Social Media Management', '/social-media-management'],
-  ['Photography', '/photography'],
-  ['Videography', '/videography'],
-  ['AI Automations', '/ai-automations'],
   ['SEO', '/seo'],
+  ['Social Media Management', '/social-media-management'],
 ]
 const links = [['Work', '#work'], ['About', '#about'], ['Resource', '#resource']]
 
@@ -29,7 +26,7 @@ export function Navigation() {
       <div className="capsule-links">
         {links.slice(0, 2).map(([label, href]) => <a href={href} key={label}>{label}</a>)}
         <div className="capsule-service-menu" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
-          <button type="button" aria-expanded={servicesOpen} onClick={() => setServicesOpen((value) => !value)}>Services</button>
+          <button type="button" aria-expanded={servicesOpen} onClick={() => setServicesOpen((value) => !value)}>Services <span aria-hidden="true">⌄</span></button>
           <AnimatePresence>{servicesOpen && <motion.div className="capsule-service-dropdown" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: .22, ease: [.22, 1, .36, 1] }}>{services.map(([label, href]) => <a href={href} key={href} onClick={() => setServicesOpen(false)}>{label}</a>)}</motion.div>}</AnimatePresence>
         </div>
         <a href="#resource">Resource</a>
