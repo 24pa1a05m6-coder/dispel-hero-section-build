@@ -1,8 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import './global-shell.css'
-import { MainLayout } from '@/components/MainLayout'
 
 export const metadata: Metadata = {
   title: 'dispel — Ideas into impact.',
@@ -40,9 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
-        <MainLayout>
-          {children}
-        </MainLayout>
+        {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

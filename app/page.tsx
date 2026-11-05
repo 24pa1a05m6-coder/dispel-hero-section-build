@@ -1,6 +1,6 @@
-import { HomePage } from '@/components/HomePage'
-import './home.css'
+import { Hero } from '@/components/Hero'
+import './hero.css'
 
 export default function Page() {
-  return <HomePage />
+  return <Hero />
 }
