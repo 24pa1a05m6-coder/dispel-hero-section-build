@@ -1,9 +1,10 @@
 import { InteractiveWord } from './InteractiveWord'
+import { Navigation } from './Navigation'
 
 export function Hero() {
   return (
     <main className="hero">
-      <a className="site-cta" href="#get-started">Get started</a>
+      <Navigation />
       <section className="hero-center" aria-labelledby="hero-title">
         <h1 id="hero-title">
           <InteractiveWord />
