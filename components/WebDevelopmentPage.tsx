@@ -50,11 +50,6 @@ function Reveal({ children, className = '' }: { children: React.ReactNode; class
 export function WebDevelopmentPage() {
   return (
     <main className="web-page">
-      <header className="web-nav">
-        <a className="web-brand" href="/">dispel.solutions</a>
-        <a className="web-nav-link" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
-      </header>
-
       <section className="web-hero web-shell">
         <div className="web-hero-copy">
           <p className="eyebrow">Web development / 001</p>
@@ -100,7 +95,6 @@ export function WebDevelopmentPage() {
       <section className="web-section web-shell why-section"><Reveal className="section-heading"><p className="eyebrow">Why choose us?</p><h2>Good work is<br /><em>hard-working.</em></h2></Reveal><div className="why-grid">{['Performance-focused development.', 'Mobile-first responsive design.', 'Scalable architecture.', 'SEO-friendly development.', 'Modern technology stack.', 'Reliable post-launch support.'].map((item, index) => <Reveal className="why-item" key={item}><span>0{index + 1}</span><p>{item}</p></Reveal>)}</div></section>
 
       <section className="web-cta web-shell" id="contact"><p className="eyebrow">Let&apos;s make something useful</p><h2>Have an idea?<br /><em>Let&apos;s bring it to the web.</em></h2><p>Tell us what you&apos;re planning. We&apos;ll help turn your idea into a powerful digital experience.</p><a className="web-button web-button-dark" href="mailto:hello@dispel.solutions">Let&apos;s Build Something <span aria-hidden="true">↗</span></a></section>
-      <footer className="web-footer web-shell"><span>dispel.solutions</span><span>Web development / 001</span><span>© 2026</span></footer>
     </main>
   )
 }
