@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useState } from 'react'
 
 const replacementByIndex = ['design', 'pixels', 'assets', 'coupon', 'market', 'funnel']
@@ -12,87 +12,38 @@ const descriptions = [
   'Connecting brands with the right people, at the right time.',
   'Turning meaningful interactions into measurable growth.',
 ]
+const backgroundColors = ['#E9E1D5', '#DCE8F0', '#E5E8D8', '#F0DFD5', '#E8E1F0', '#DDE9E5']
+const ease = [0.22, 1, 0.36, 1] as const
 
-const transitions = {
-  duration: 0.75,
-  ease: [0.22, 1, 0.36, 1] as const,
-}
-
-type InteractiveWordProps = {
-  word?: string
-  className?: string
-}
-
-export function InteractiveWord({ word = 'dispel', className = '' }: InteractiveWordProps) {
+export function InteractiveWord({ word = 'dispel', className = '' }: { word?: string; className?: string }) {
   const letters = Array.from(word)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const reducedMotion = useReducedMotion()
   const replacement = activeIndex === null ? word : replacementByIndex[activeIndex]
-  const prefix = activeIndex === null ? '' : replacement.slice(0, activeIndex)
-  const anchor = activeIndex === null ? '' : replacement[activeIndex]
-  const suffix = activeIndex === null ? '' : replacement.slice(activeIndex + 1)
-  const visibleLetters = activeIndex === null ? letters : Array.from(prefix + anchor + suffix)
+  const renderedLetters = Array.from(replacement)
+  const backgroundColor = activeIndex === null ? '#F3F0E8' : backgroundColors[activeIndex]
+  const motionTransition = reducedMotion ? { duration: 0 } : { duration: 0.8, ease }
+
+  const activate = (index: number) => setActiveIndex(index)
+  const toggle = (index: number) => setActiveIndex((current) => (current === index ? null : index))
 
   return (
     <>
-      <span
-        className={`interactive-word ${className}`}
-        aria-label={activeIndex === null ? word : replacement}
-        onMouseLeave={() => setActiveIndex(null)}
-      >
-      {visibleLetters.map((character, index) => {
-        const isAnchor = activeIndex === index
-        return (
-          <motion.span
-            className={`interactive-letter${isAnchor ? ' interactive-letter--anchor' : ''}`}
-            data-letter={character}
-            data-index={index}
-            key={`${activeIndex ?? 'base'}-${index}`}
-            onClick={() => setActiveIndex(index)}
-            onMouseEnter={() => setActiveIndex(index)}
-            role="button"
-            tabIndex={0}
-            aria-label={`Letter ${character}, position ${index + 1}`}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault()
-                setActiveIndex((current) => (current === index ? null : index))
-              }
-            }}
-            layout="position"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={transitions}
-          >
-            <AnimatePresence initial={false} mode="popLayout">
-              <motion.span
-                key={`${activeIndex ?? 'base'}-${character}`}
-                className="interactive-glyph"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={transitions}
-              >
+      <motion.div className="interactive-stage" aria-hidden="true" animate={{ backgroundColor }} transition={{ duration: reducedMotion ? 0 : 1.05, ease }} />
+      <span className={`interactive-word ${className}`} aria-label={replacement} onMouseLeave={() => setActiveIndex(null)}>
+        {renderedLetters.map((character, index) => {
+          const isAnchor = activeIndex === index
+          return <span className={`interactive-letter${isAnchor ? ' interactive-letter--anchor' : ''}`} data-letter={character} data-index={index} key={`slot-${index}`} onMouseEnter={() => activate(index)} onClick={() => toggle(index)} role="button" tabIndex={0} aria-label={`Letter ${character}, position ${index + 1}`} onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(index) } }}>
+            <AnimatePresence initial={false} mode="sync">
+              <motion.span key={`${index}-${character}`} className="interactive-glyph" initial={reducedMotion ? false : { opacity: 0, x: index < (activeIndex ?? 3) ? -6 : 6, y: 4 }} animate={{ opacity: 1, x: 0, y: 0 }} exit={reducedMotion ? undefined : { opacity: 0, x: index < (activeIndex ?? 3) ? 6 : -6, y: -4 }} transition={{ ...motionTransition, delay: reducedMotion ? 0 : index * 0.02 }}>
                 {character}
               </motion.span>
             </AnimatePresence>
-          </motion.span>
-        )
-      })}
+          </span>
+        })}
       </span>
-      <AnimatePresence mode="wait">
-        {activeIndex !== null && (
-          <motion.p
-            className="interactive-description"
-            key={replacement}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {descriptions[activeIndex]}
-          </motion.p>
-        )}
+      <AnimatePresence initial={false} mode="sync">
+        {activeIndex !== null && <motion.p className="interactive-description" key={replacement} initial={reducedMotion ? false : { opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={reducedMotion ? undefined : { opacity: 0, y: -3 }} transition={{ duration: reducedMotion ? 0 : 0.52, ease }}>{descriptions[activeIndex]}</motion.p>}
       </AnimatePresence>
     </>
   )
