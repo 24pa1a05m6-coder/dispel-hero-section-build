@@ -42,7 +42,7 @@ export function InteractiveWord({ word = 'dispel', className = '' }: { word?: st
           </span>
         })}
       </span>
-      <AnimatePresence initial={false} mode="sync">
+      <AnimatePresence initial={false} mode="wait">
         {activeIndex !== null && <motion.p className="interactive-description" key={replacement} initial={reducedMotion ? false : { opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={reducedMotion ? undefined : { opacity: 0, y: -3 }} transition={{ duration: reducedMotion ? 0 : 0.52, ease }}>{descriptions[activeIndex]}</motion.p>}
       </AnimatePresence>
     </>

@@ -127,8 +127,8 @@
   border: 0;
   color: inherit;
   cursor: default;
-  display: inline-flex;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
   min-width: 0;
   padding: 0;
   position: relative;
@@ -137,6 +137,7 @@
 
 .interactive-glyph {
   display: inline-block;
+  grid-area: 1 / 1;
 }
 
 .interactive-letter:hover,
